@@ -1,14 +1,67 @@
 <template>
-  <div class="">
-    这是主页
-    <div id="main" style="width:500px;height:300px"></div>
+  <div class="" style="margin:20px 0">
+    <el-row :gutter="20">
+      <el-col :span="12" style="text-align:center"
+        ><div class="grid-content bg-purple">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>昨日访问量</span>
+            </div>
+            <div>1111</div>
+          </el-card>
+        </div></el-col
+      >
+      <el-col :span="12" style="text-align:center"
+        ><div class="grid-content bg-purple">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>上周访问</span>
+            </div>
+            <div>22222</div>
+          </el-card>
+        </div></el-col
+      >
+    </el-row>
+
+    <el-row :gutter="20">
+      <el-col :span="8">
+        <div class="grid-content bg-purple">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>每周统计</span>
+            </div>
+            <echartsColumn id="c1" width="400px" height="300px" />
+          </el-card>
+        </div>
+      </el-col>
+      <el-col :span="8">
+        <div class="grid-content bg-purple">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>访问量</span>
+            </div>
+            <echartsLine id="c2" width="400px" height="300px" />
+          </el-card>
+        </div>
+      </el-col>
+      <el-col :span="8">
+        <div class="grid-content bg-purple">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <span>行业统计</span>
+            </div>
+            <echartsPie id="c3" width="400px" height="300px" />
+          </el-card>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import echarts from "echarts";
+import { echartsColumn, echartsLine, echartsPie } from "../components/index";
 export default {
-  components: {},
+  components: { echartsColumn, echartsLine, echartsPie },
   data() {
     return {};
   },
@@ -16,34 +69,7 @@ export default {
   watch: {},
   methods: {},
   created() {},
-  mounted() {
-    var myChart = echarts.init(document.getElementById("main"));
 
-    // 指定图表的配置项和数据
-    var option = {
-      title: {
-        text: "第一个 ECharts 实例",
-      },
-      tooltip: {},
-      legend: {
-        data: ["销量"],
-      },
-      xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-      },
-      yAxis: {},
-      series: [
-        {
-          name: "销量",
-          type: "bar",
-          data: [5, 20, 36, 10, 10, 20],
-        },
-      ],
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-  },
   beforeCreate() {},
   beforeMount() {},
   beforeUpdate() {},
@@ -54,5 +80,46 @@ export default {
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-//@import url(); 引入公共css类
+.el-row {
+   margin-bottom: 20px;
+   &:last-child {
+     margin-bottom: 0;
+   }
+ }
+ .el-col {
+   border-radius: 4px;
+ }
+ .bg-purple-dark {
+   background: #99a9bf;
+ }
+ .bg-purple {
+   background: #d3dce6;
+ }
+ .bg-purple-light {
+   background: #e5e9f2;
+ }
+ .grid-content {
+   border-radius: 4px;
+   min-height: 36px;
+ }
+ .row-bg {
+   padding: 10px 0;
+   background-color: #f9fafc;
+ }
+ .text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
 </style>
